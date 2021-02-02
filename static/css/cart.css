@@ -1,0 +1,88 @@
+.cart-top,
+        .cart-bottom,
+        .cart-footer {
+            padding: 20px;
+            background:#04855e;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color:white;
+            box-shadow: 0 10px 16px 0 rgba(109, 86, 86, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .cart-footer h4 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container_custom {
+            padding: 10px;
+            max-width: 1050px;
+            margin-left: 13px;
+            margin-right: 13px;
+            margin-bottom: 50px;
+        }
+
+        .navigation_btns {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart_header,
+        .cart_items {
+            display: flex;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+
+        .cart_items {
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .cart_header h4 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 5px;
+        }
+
+        .cart_info {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .cart_info h4 {
+            margin-right: 20px;
+        }
+
+        .navbar-header {
+            font-family: 'Pacifico';
+        }
+
+        .fa {
+            font-size: 18px;
+        }
+
+        .cart_image {
+            height: 75px;
+        }
+        /* for success page css */
+        .success_page_items{
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        .shipping_info2{
+            display: flex;
+            justify-content:center;
+        }
+        .customer_info2,.Order_info2{
+            border:1px solid white;
+            border-radius:10px;
+            padding:6px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        /* css for success page ends */
+        @media screen and (min-width:1200px) {
+            .container_custom {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }

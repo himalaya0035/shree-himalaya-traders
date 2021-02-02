@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <title>Coming Soon</title>
+    <style>
+        body {
+            background-image: url("images/448.jpg");
+            background-size: 1212px 400px;
+            opacity: 0.9;
+        }
+        .box {
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        h1 {
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .loader {
+            position: fixed;
+            top:0;
+            left:0;
+            background: #eee;
+            width:100%;
+            height:100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .disappear {
+            animation: vanish 1s forwards;
+        }
+        @keyframes vanish {
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        @media screen and (max-width: 700px){
+            body {
+            background-image:url("images/448.jpg");
+            background-size: 320px 420px;
+            background-repeat:no-repeat;       
+            opacity: 0.9;
+        }
+        h1 {
+            font-size:40px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <img src="images/load-gif.gif" alt="">
+      </div>
+    <div class="box">
+        <h1>Under <img src="images/construction2.png" alt="">, coming soon</h1>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:70%">
+            </div>
+          </div>
+    </div>
+    <script src="js/stylepre.js"></script>
+</body>
+</html>

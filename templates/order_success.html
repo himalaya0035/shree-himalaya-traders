@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div class="container_custom" style="margin-top: 80px;">
+    <div class="row">
+        <div class="cart-top">
+            <div class="navigation_btns">
+                <a class="btn btn-primary" href="{% url 'customer' %}">Dashboard</a>
+                <a class="btn btn-success" href="{% url 'store' %}">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cart-bottom">
+            <div class="cart_header" style="justify-content: flex-start;">
+                <h3 style="font-family:'Times New Roman', Times, serif;">Order Recieved ☑</h3>
+                
+            </div>
+            <h5>An order confirmation mail has been sent to {{email}}</h5>
+            <hr>
+            <div class="success_page_items">
+              <div class="customer_info2">
+                <h3>Customer : {{name}}</h3>
+                <h3>Contact No : {{contact_no}}</h3>
+                <h3>Email : {{email}}</h3>
+              </div>
+              <div class="Order_info2">
+                <h3 class="hidden">Email : {{email}}</h3>
+                <h3>Order Items : {{items}}</h3>
+                <h3>Order Total : Rs{{total}}</h3>
+                <h3>Transaction ID : {{transaction_id}}</h3> 
+              </div>
+            </div>
+            <hr>
+            <div class="shipping_info2">
+                <h3>Delivery Address : {{address}}</h3>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cart-footer">
+            <div class="cart_info">
+                <h3 style="font-family:'Times New Roman', Times, serif;">Thank you for Shopping with us!!😊</h3>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

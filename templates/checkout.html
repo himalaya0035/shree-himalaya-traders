@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>➡ Checkout</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Shop products , checkout and more...">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .navigation_btns {
+            align-items: center;
+        }
+
+        .container_custom {
+            margin-top: 85px;
+            max-width: 1080px;
+        }
+
+        .checkout {
+            display: flex;
+            padding: 0px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .order_summary,
+        .shipping_form {
+            padding: 20px;
+            background-color: #04855e;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .shipping_form {
+            margin-right: 10px;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .order_summary {
+            width: 100%;
+            max-width: 730px;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .shipping_input2 {
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background: #3e7ae2;
+            margin-top: 0px;
+            line-height: 0px;
+            border: none;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #82abf1;
+            color: black;
+        }
+
+        @media screen and (max-width:720px) {
+            .shipping_form {
+                margin-right: auto;
+                max-width: 720px;
+            }
+
+            .container_custom {
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-top: 85px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background:linear-gradient(	rgba(175, 222, 204,1), rgba(230, 198, 143, 0.7)); height: auto;">
+    {% include 'navbar2.html' %}
+    <div class="container_custom" style="padding: 0px;">
+        <div class="">
+            <div class="cart-top">
+                <div class="navigation_btns">
+                    <a class="btn btn-primary" href="{% url 'cart' %}">Back to Cart</a>
+                    <a class="btn btn-success" href="#" onclick="alert('This Will work once i integrate a payment service gateway')">Payment Options</a>
+                </div>
+            </div>
+        </div>
+        <div class="checkout" style="margin: 0px;">
+            <div class="shipping_form" style="box-shadow: 0 10px 16px 0 rgba(109, 86, 86, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <h2 style="text-align: center; margin-top: 0px;">Shipping Address</h2>
+                <form action="process_order" method="POST" onsubmit="return validateShippingForm()">
+                    {% csrf_token %}
+                    <input aria-label="Enter Customer Name" type="text" placeholder="Name" name="customer_name" class="shipping_input2"
+                        value="{{request.user.first_name}}">
+                    <input aria-label="Enter Email" type="email" placeholder="Email" name="email" class="shipping_input2"
+                        value="{{request.user.email}}">
+                    <input aria-label="Enter Delivery address" type="text" placeholder="Delivery Address" id="" name="store_address" class="shipping_input2">
+                    <input aria-label="Enter contact number" type="number" placeholder="Contact no" min="999999999" max="999999999999" name="contact_no"
+                        class="shipping_input2">
+                    <input aria-label="Hidden Field" type="text" class="hidden-lg hidden-md hidden-sm hidden-xs" value="{{order.get_cart_total}}"
+                        name="cart_total">
+                    {% if items %}    
+                    <input aria-label="Submit shipping form" type="submit" name="" value="Make Payment" id="" class="submit_btn">
+                    {% else %}
+                    <input type="submit" name="" value="Nothing To Pay" id="" class="submit_btn" style="pointer-events: none; background: gray;">
+                    {% endif %}
+                </form>
+            </div>
+            <div class="order_summary" style="padding: 3px; padding-top:10px; box-shadow: 0 10px 16px 0 rgba(109, 86, 86, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <h2 style="text-align: center; margin-top: 0px;">Order Summary</h2>
+                <div class="cart-bottom" style="box-shadow: none;">
+                    <div class="cart_header">
+                        <h4 style="flex: 1;">Product</h4>
+                        <h4 style="flex: 1;">Price</h4>
+                        <h4 style="flex: 1;">Qnty.</h4>
+                        <h4 style="flex: 1;">Amount</h4>
+                    </div>
+                    {% if not items %}
+                    <hr>
+                    <div class="cart_items" style="flex:4;">
+
+                        <h2 style="text-align: center; font-family: 'Times New Roman', Times, serif;">Nothing to
+                            Checkout</h2>
+
+                    </div>
+                    {% endif %}
+                    <hr>
+                    {% for item in items %}
+                    <div class="cart_items">
+                        <div class="cart_item" style="flex: 1;">
+                            <img src="{{item.product.imageURL}}" class="" alt="" style="margin-right: 3px; height:50px">
+                            <span style="font-size:14px">{{item.product.name}}</span>
+                        </div>
+                        <h5 style="flex: 1;">Rs{{item.price}}</h5>
+                        <h5 style="flex: 1;">x{{item.quantity}}</h5>
+                        <h5 style="flex: 1;">Rs{{item.get_total}}</h5>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    <h4 style="text-align: right; font-family:Verdana, Geneva, Tahoma, sans-serif; margin-bottom: 0px;">
+                        Cart Total : Rs{{order.get_cart_total}}</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% include 'footer.html' %}
+    <script>
+        function validateShippingForm() {
+            var formFields = document.getElementsByClassName('shipping_input2');
+            for (var i = 0; i < formFields.length; i++) {
+                if (formFields[i].value == '') {
+                    alert('Required Field')
+                    formFields[i].style.border="2px solid rgba(42, 168, 120, 0.692)"
+                    return false
+                }
+            }
+            var store_address = document.getElementsByName('store_address')[0]
+            if (store_address.value.length < 15){
+                alert('Store Address must be 15 characters long or more..')
+                store_address.style.border = "2px solid rgba(42, 168, 120, 0.692)"
+                return false
+            }
+        }
+    </script>
+</body>
+
+</html>

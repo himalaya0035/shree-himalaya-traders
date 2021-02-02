@@ -1,0 +1,172 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>🛒 Store</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="description" 
+    content="Visit the official store of Shree Himalaya Traders. Shop at the best prices in the market. Hurry!!">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+      <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+      <style>
+      </style>
+  <script>
+      var user = '{{request.user}}'
+
+      function getToken(name) {
+    	let cookieValue = null;
+    	if (document.cookie && document.cookie !== '') {
+        	const cookies = document.cookie.split(';');
+        	for (let i = 0; i < cookies.length; i++) {
+            	const cookie = cookies[i].trim();
+            	// Does this cookie string begin with the name we want?
+            	if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                	cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                	break;
+            	}
+        	}
+    	}
+    return cookieValue;
+	}
+	const csrftoken = getToken('csrftoken');
+    </script>
+  </head>
+  <body>
+    <!--Preloader-->
+    <!-- <div class="loader">
+      <img src="images/load-gif.gif" alt="">
+    </div> -->
+  <!--Preloader ends-->
+    <!--Navbar( made entirely in bootstrap with some custom changes)-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="{% url 'home' %}" aria-label="Shree Himalaya Traders" class="navbar-brand">Shree Himalaya Traders</a>
+        <button name="button" aria-label="toggler" class="navbar-toggle" data-target="#target" data-toggle="collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+       </button>
+      </div>
+       <div class="collapse navbar-collapse" id="target">
+         <ul class="nav navbar-nav">
+           <li><a aria-label="visit homepage" href="{% url 'home' %}">Home</a></li>
+           <li class="active"><a aria-label="visit store" href="{% url 'store' %}">Store</a></li>
+           {% if user.is_authenticated %}
+           <li><a aria-label="visit Dashboard" href="{% url 'customer' %}">Dashboard</a></li>
+           {% endif %}
+         </ul>
+         <!--This is visible when screen size is large, medium and small-->
+         <ul class="nav navbar-nav navbar-right hidden-xs">
+         {% if user.is_authenticated %}
+                <li title="view profile, orders and more.."><a aria-label="visit Dashboard" href="{% url 'customer' %}" class="display" title="view profile, orders and more..">Hi, {{user.first_name}} </a></li>
+                <li><a aria-label="Logout" href="{% url 'logout' %}" class="display"><i class="fa fa-sign-in"></i> Logout</a></li>
+           {% else %}
+          <li><a aria-label="Login" href="{% url 'accounts' %}" class="display"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+          </li>
+            {% endif %}
+            <li><a aria-label="View Cart" href="{% url 'cart' %}" class="shopping-cart"><img alt="cart"  id="cart-icon" src="{% static 'images/cart.png' %}"></a></li>
+        </ul>
+        <!--This works when screen size is extra small-->
+        <ul class="nav navbar-nav navbar-right hidden-lg hidden-md hidden-sm">
+        {% if user.is_authenticated %}
+                <li title="view profile, orders and more.."><a aria-label="Dashboard" href="{% url 'customer' %}" class="display">Hi, {{user.first_name}} </a></li>
+                <li><a aria-label="Logout" href="{% url 'logout' %}" class="display"><i class="fa fa-sign-in"></i> Logout</a></li>
+            {% else %}
+          <li><a aria-label="Login" href="{% url 'accounts' %}" class="display"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+          </li>
+           {% endif %}
+           <li><a aria-label="View cart" href="{% url 'cart' %}" class="display"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+        </ul>
+       </div>
+      </div>
+    </nav>
+    <div class="searchform" style="margin-top:70px;">
+        <form action="" method="GET" class="designSearchForm">
+          {{myfilter.form}}
+           <!-- <input type="text" class="searchbox" placeholder="Search Product.."> -->
+            <button type="submit" class="btn btn-primary searchbtn" style="margin-right:2px;">Search</button>
+        </form>
+        <a aria-label="visit cart" href="{% url 'cart' %}" class="btn btn-success">Cart</a>
+    </div>
+    {% if not products %}
+        <h2 style="margin-top:60px; text-align:center;" id="searchResult">No Search Result Found</h2>
+    <h5 style="text-align:center; margin-bottom:269px;">Try using a different keyword. <a href="{% url 'store' %}">Back to store</a></h5>
+    {% endif %}
+   <!--Navbar code ends-->
+     <div class="product_list" style="margin-top: 10px;">
+        <div class="container-store">
+         {% for product in products %}
+           <div class="box">
+          <div class="imgbx">
+            <img src="{{product.imageURL}}" alt="">
+          </div>
+          <div class="content">
+            <div class="product-title">
+              <h3 class="p_title">{{product.name}}</h3>
+              {% if user.is_authenticated %}
+                <button data-product="{{product.id}}" data-action="add" data-toggle="modal" data-target="#myModal" class="btn btn-success update-cart animation">Add to Cart</button>
+              {% else %}
+                <a href="{% url 'accounts' %}" onclick="alert('You need to Login first')" class="btn btn-success">Add to Cart</a>
+              {% endif %}
+            </div>
+             <div class="product-info">
+            <div class="info">
+              <input aria-label="{{product.desc1}}" type="radio" checked name="{{product.id}}" value="price1">
+              <p class="product-desc">{{product.desc1}}</p>
+              <h3 class="price">Rs{{product.price1}}</h3>
+            </div>
+                 {% if product.desc2 and product.price2 %}
+            <div class="info">
+              <input aria-label="{{product.desc2}}" type="radio" name="{{product.id}}" value="price2">
+              <p class="product-desc">{{product.desc2}}</p>
+              <h3 class="price">Rs{{product.price2}}</h3>
+            </div>
+                 {% endif %}
+                 {% if product.desc3 and product.price3 %}
+                 <div class="info">
+              <input aria-label="{{product.desc3}}" type="radio" name="{{product.id}}" value="price3">
+              <p class="product-desc">{{product.desc3}}</p>
+              <h3 class="price">Rs{{product.price3}}</h3>
+            </div>
+                 {% endif %}
+            </div>
+          </div>
+        </div>
+            {% endfor %}
+        </div>
+   </div>
+   <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <div class="modal-content remove"  style="margin-top:9%;  width:200px; margin-left: auto; margin-right: auto;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h5 >Item Added to Cart</h5>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+    <!--footer html-->
+        {% include 'footer.html' %}
+    <!--footer html ends-->
+    <script src="{% static 'js/cart.js' %}"></script>
+    <script src="{% static 'js/stylepre.js' %}"></script> <!--our own js-->
+    <script>
+        
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+.parent{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+
+}
+.child_div {
+    width: 70%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 6px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    animation: 1s drop;
+}
+@keyframes drop{
+    0%{
+        top:-100px;
+    }
+    100%{
+        top:50%;
+    }
+}
+.cross {
+    position: absolute;
+    top:5px;
+    right: 20px;
+    font-size: 40px;
+    cursor: pointer;
+}

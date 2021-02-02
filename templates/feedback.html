@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{% block title %}
+<title>Feedback Form</title>
+{% endblock %}
+{% block style %}
+<style>
+    .Feed {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .Feedback {
+        height: auto;
+        width: 600px;
+        border: 1px solid transparent;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 10px;
+    }
+    .feedback-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .feedback-content{
+        display: flex;
+        justify-content: space-evenly;
+        
+    }
+    .last_feedback{
+        height: 150px;
+        padding: 15px;
+        width: auto;
+        border:none;
+        border-radius:10px;
+      
+    }
+    textarea:focus{
+        outline:none;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="Feed">
+    <div class="Feedback">
+        <div class="feedback-header">
+            <div class="header_one">
+                <h3>Feedback Form</h3>
+                <h5>{{item}}</h5>
+            </div>
+            <img src="{{item.product.imageURL}}" alt="" height="auto" width="70px">
+        </div>
+        <hr>
+        <div class="feedback-content">
+            <div class="last_feedback">
+                {% if item.feedback %}
+                Last Feedback : <h5>{{item.feedback}}</h5>
+                {% else %}
+                <h5>Last feedback would appear here..</h5>
+                {% endif %}
+            </div>
+            <form action="{% url 'feedback' item.id %}" method="POST">
+                {% csrf_token %}
+                <textarea name="feedback" id="" style="resize: none; padding: 10px; height: 100px; width:200px; line-height: 20px;border: none; border-bottom: 1px solid rgb(49, 49, 49); border-radius: 10px;"
+                    placeholder="Feedback..."></textarea>
+                <input type="submit" value="Update" style="max-width: 200px;">
+            </form>
+        </div>
+        <hr>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display_Products</title>
+     <!--Bootsrap css,js and jquery-->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <!--Fonatawesome and google fonts-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/store.css">
+     <style>
+      
+     @media screen and (min-width:720px){
+       ::-webkit-scrollbar {
+  width:20px;
+}
+::-webkit-scrollbar-track {
+  background-color:rgb(37, 37, 37);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background:linear-gradient(
+      rgba(230, 198, 143, 0.7),
+      rgba(175, 222, 204,1)
+  );
+}
+.product-heading{
+         text-align: center;
+       }
+     }
+     @media screen and (max-width: 365px) {
+       .box {
+         max-width: 350px;
+       }
+       .product-title {
+         justify-content: center;
+       }
+       .product-title button {
+          display:none ;
+          text-align: center;
+       }
+     }
+     </style>
+</head>
+<body>
+    <div class="product_list">
+        <h1 class="product_company">Devdarshan Products</h1>
+        <div class="container-store">
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/dev3.JPG" alt="">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3 class="product-heading">Premium Dhoop</h3>
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/dev4.JPG" alt="Bhagwan jaane kyu nahi aa rahi image">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3 class="product-heading">Amber cones</h3>
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/dev5.JPG" alt="">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3 class="product-heading">Incense sticks</h3>
+                    
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="product_company">Sanjeevani Products</h1>
+        <div class="container-store">
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/san5.JPG" alt="">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3 class="product-heading">Sanjeevani Gold</h3>
+                   
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/san7.JPG" alt="">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3 class="product-heading">Sanjeevani Tara</h3>
+                    
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/san6.JPG" alt="">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3 class="product-heading">Sanjeevani Regular</h3>
+                   
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="product_company">Madhusudhan Products</h1>
+        <div class="container-store">
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/mad4.JPG" alt="">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3>Product one</h3>
+                  
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/mad3.JPG" alt="">
+                </div>
+                <div class="content">
+                  <div class="product-title">
+                    <h3>Product two</h3>
+                    
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="imgbx">
+                  <img src="images/mad2.JPG" alt="">
+                </div>
+                <div class="content">
+                    <div class="product-title">
+                    <h3>Product three</h3>
+                    
+                  </div>
+                  <div class="product-info">
+                    <div class="info">
+                      <input type="radio" checked name="{{product.id}}" value="price1">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, itaque!</p>
+                      <h3 class="price">Rs699</h3>
+                    </div>
+                    <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price2">
+                      <p class="product-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima sint pariatur voluptatibus atque voluptatem placeat nemo, laboriosam facere commodi similique?</p>
+                      <h3 class="price">Rs499</h3>
+                    </div>
+                         <div class="info">
+                      <input type="radio" name="{{product.id}}" value="price3">
+                      <p class="product-desc">Lorem ipsum dolor sit amet.</p>
+                      <h3 class="price">Rs299</h3>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+   <script>
+     var buttons = document.getElementsByClassName("btn-success");
+     for (var i = 0; i<buttons.length; i++){
+       var button = buttons[i];
+       button.addEventListener("click",function(){
+         window.open("store.html");
+       });
+     }
+   </script>
+</body>
+</html>

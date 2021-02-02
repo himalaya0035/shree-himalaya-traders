@@ -1,0 +1,50 @@
+{% load static %}
+ <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <a aria-label="Shree Himalaya Traders" href="{% url 'home' %}" class="navbar-brand" style="font-size: 20px;">Shree Himalaya Traders</a>
+        <button name="button" aria-label="Toggler" class="navbar-toggle" data-target="#target" data-toggle="collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+       </button>
+      </div>
+       <div class="collapse navbar-collapse" id="target">
+         <ul class="nav navbar-nav">
+           <li class="active"><a  aria-label="visit homepage" href="{% url 'home' %}">Home</a></li>
+           <li><a aria-label="visit store" href="{% url 'store' %}">Store</a></li>
+           {% if user.is_authenticated %}
+           <li><a aria-label="visit Dashboard" href="{% url 'customer' %}">Dashboard</a></li>
+           {% endif %}
+         </ul>
+            <!--This is visible when screen size is large, medium and small-->
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+         {% if user.is_authenticated %}
+                <li title="view profile, orders and more.."><a  aria-label="Dashboard" href="{% url 'customer' %}" class="display" title="view profile, orders and more..">Hi, {{user.first_name}} </a></li>
+                <li><a aria-label="Logout" href="{% url 'logout' %}" class="display"><i class="fa fa-sign-in"></i> Logout</a></li>
+
+           {% else %}
+          <li><a aria-label="Login" href="{% url 'accounts' %}" class="display"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+          </li>
+
+            {% endif %}
+            <li><a aria-label="View Cart" href="{% url 'cart' %}" class="display"><img  alt="cart" id="cart-icon" src="{% static 'images/cart.png' %}">
+            </a>
+
+        </ul>
+        <!--This works when screen size is extra small-->
+        <ul class="nav navbar-nav navbar-right hidden-lg hidden-md hidden-sm">
+        {% if user.is_authenticated %}
+                <li title="view profile, orders and more.."><a aria-label="Dashboard" href="{% url 'customer' %}" class="display">Hi, {{user.first_name}} </a></li>
+                <li><a aria-label="Logout" href="{% url 'logout' %}" class="display"><i class="fa fa-sign-in"></i> Logout</a></li>
+            {% else %}
+          <li><a aria-label="Login" href="{% url 'accounts' %}" class="display"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+          </li>
+           {% endif %}
+        <li><a aria-label="View Cart" href="{% url 'cart' %}" class="display"><i class="fa fa-shopping-cart"></i> Cart</a>
+        </ul>
+       </div>
+      </div>
+    </nav>
+ 
+     

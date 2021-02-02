@@ -1,0 +1,180 @@
+{% extends 'main.html' %}
+{% block title %}
+<title>Dashboard</title>
+{% endblock %}
+{% block content %}
+der-2 rounded-lg border-gray-200 p-8 sm:flex-row flex-col">
+{% if messages %}
+    <div class="alert alert-info" style="margin-top:30px" id="msg">
+        {% for message in messages %}
+            <h5>{{message}}</h5>
+        {% endfor %}
+    </div>
+    {% endif %}
+<section class="top_section container">
+  <div class="customer_info">
+    <h3>Name : {{user.first_name}} {{user.last_name}}</h3>
+    <h3>Email : {{user.email}} <!--<a href="{% url 'verify_email' %}" data-toggle="modal" data-target="#myModal3" class="btn btn-warning btn-sm">Verify</a>--></h3>
+    <h3>Username : {{user}}</h3>
+  </div>
+  <div class="change_customer_info">
+    <h3><a href="{% url 'reset_password' %}" aria-label="Reset Password" class="user_links">Change Password</a></h3>
+    <h3><a href="" class="user_links" data-toggle="modal"  aria-label="Update Email" data-target="#myModal2">Update Email</a></h3>
+    <h3><a href="" class="user_links" style="color: rgb(116, 3, 3);" aria-label="Delete Account" data-toggle="modal" data-target="#myModal">Delete Account</a></h3>
+  </div>
+</section>
+<hr>
+  <section class="middle_section container">
+<div class="order_info">
+  <div class="total_orders">
+    <div class="heading">
+      <h2>Items Ordered</h2>
+    </div>
+    <hr>
+    <div class="heading_answer">
+      <h2>{{total_items}}</h2>
+    </div>
+  </div>
+  <div class="orders_deliverd">
+    <div class="heading">
+      <h2>Delivered</h2>
+    </div>
+      <hr>
+    <div class="heading_answer">
+      <h2>{{delivered}}</h2>
+    </div>
+  </div>
+  <div class="pending">
+    <div class="heading">
+      <h2>Out for Delivery</h2>
+    </div>
+      <hr>
+    <div class="heading_answer">
+      <h2>{{out_for_delivery}}</h2>
+    </div>
+  </div>
+</div>
+</section>
+<hr>
+<section class="container table-responsive" style="margin-bottom: 50px; margin-top:20px;">
+ <h1>Items Ordered</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Qnty.</th>
+        <th>Status</th>
+        <th>Date Ordered</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{item}}</td>
+        <td>Rs{{item.price}}</td>
+        <td>x{{item.quantity}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.date_added}}</td>
+        {% if item.status == 'Pending' or item.status == 'Out for delivery' %}
+          <td><a href="{% url 'delete_item' item.id %}" onclick="return confirm('Confirm Deletion of this product ?')" class="btn btn-danger">Delete <i class="fa fa-trash"></i></a></td>
+        {% else %}
+          <td><a href="{% url 'feedback' item.id %}" class="btn btn-primary">Feedback</a></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="margin-top:30%;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Verify Password for Deletion</h4>
+        <p style="color: black;">Username : {{request.user}}</p>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'delete_user' %}" style="display: flex; flex-direction: column; align-items: center;" method="POST">
+          {% csrf_token %}
+          <input type="password", name="password" style="width: 100%; max-width: 250px; margin-bottom: 15px;" placeholder="Password...">
+          <input type="submit" class="btn btn-danger" value="Delete Account" style="max-width: 250px; background: rgb(138, 32, 32); border-radius: 10px; color: whitesmoke;">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <p style="color: black;">Once deleted, there would be no turning back</p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+  <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="margin-top:30%;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Verify Password for Updating Email</h4>
+          <p style="color: black;">Username : {{request.user}}</p>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'update_email' %}" style="display: flex; flex-direction: column; align-items: center;" method="POST">
+            {% csrf_token %}
+            <input type="password", name="password" style="width: 100%; max-width: 250px; margin-bottom: 15px;" placeholder="Password...">
+            <input type="email" name="email" id="" placeholder="New Email Address..." style="width: 100%; max-width: 250px; margin-bottom: 15px;">
+            <input type="submit" value="Update Email" style="max-width: 250px; background: rgb(2, 133, 93); color: white; border-radius: 10px; color: whitesmoke;">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    <div class="modal fade" id="myModal3" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content" style="margin-top:30%;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Feedback Form</h4>
+            <p style="color: black;">Feedback related to the product , delivery, etc..</p>
+          </div>
+          <div class="modal-body">
+           
+            <form action="{% url 'verify_email' %}" style="display: flex; flex-direction: column; align-items: center;" method="POST">
+              {% csrf_token %}
+              <input type="text", name="otp" style="width: 100%; max-width: 250px; height:70px; margin-bottom: 15px;" placeholder="Feedback...">
+              <input type="submit" value="Update Feedback" style="max-width: 250px; background: rgb(2, 133, 93); color: white; border-radius: 10px; color: whitesmoke;">
+            </form>
+          </div>
+          <div class="modal-footer">
+           <!--<a href="{% url 'verify_email' %}" class="btn btn-primary btn-sm">Resend</a> --> 
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <script>
+      var windowpath = $(location).attr('pathname');
+
+      if (windowpath == '/user/'){
+        var navbarStatus = document.getElementById('dashboard')
+        navbarStatus.classList.add('active')
+      }
+      setTimeout(function(){
+        if($('#msg').length > 0){
+            $('#msg').remove();
+            }
+        }, 1000)
+    </script>
+{% endblock %}

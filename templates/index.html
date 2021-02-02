@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" 
+    content="Official website of Shree Himalaya Traders">
+    <!--Bootsrap css,js and jquery-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--Fonatawesome and google fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--My own css-->
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <title>Home Page</title>
+</head>
+<body>
+    <!--Preloader-->
+    <!-- <div class="loader">
+        <img src="images/load-gif.gif" alt="">
+      </div> -->
+    <!--Preloader ends-->
+    <!--Navbar( made entirely in bootstrap with some custom changes)-->
+   <!--Navbar( made entirely in bootstrap with some custom changes)-->
+
+    {% include 'navbar.html' %}
+    bar code ends--> 
+     <!-- grid system starts (css3)-->
+     <div class="grid1">
+        <div class="box1" id="carousel">
+            <!--Carousel code starts (bootstrap + custom made media queries)-->
+             <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <div class="slide1"></div>
+                    <div class="carousel-caption">
+                      <a  aria-label="Order Now" href="{% url 'store' %}" class="btn btn-primary"  style="margin-bottom: 15px;">Order Now</a>
+                    </div>
+                  </div>
+            
+                  <div class="item">
+                    <div class="slide2"></div>
+                    <div class="carousel-caption">
+                      <a aria-label="Order Now" href="{% url 'store' %}" class="btn btn-primary" style="margin-bottom: 15px;">Order Now</a>
+                    </div>
+                  </div>
+            
+                  <div class="item">
+                    <div class="slide3"></div>
+                    <div class="carousel-caption">
+                    <a aria-label="Order Now" href="{% url 'store' %}" class="btn btn-primary"  style="margin-bottom: 15px;">Order Now</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Left and right controls -->
+                <a aria-label="Previous slide" class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a  aria-label="Next slide" slide" class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  
+                </a>
+              </div>
+    
+        </div>
+        <!--Carousel code ends-->
+        <div class="box2" id="schemes">
+            <ul class="design"> <!--  FUTURE NOTES define functionality to single and double click-->
+                <li class="litem iactive"><a href="{% static 'display_products.html' %}" target="myiframe" onclick="window.location='{% url 'store' %}'";><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> Order now</span></a></li>
+                <li class="litem"><a href="{% static 'coming_soon.html' %}" target="myiframe"><i class="fa fa-gift" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> Schemes</span></a></li>
+                <li class="litem"><a href="{% static 'coming_soon.html' %}" target="myiframe"><i class="fa fa-money" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> Pay Dues</span></a></li>
+                <li class="litem"><a href="{% static 'coming_soon.html' %}" target="myiframe"><i class="fa fa-question"></i><span class="hidden-xs hidden-sm hidden-md"> FAQ</span></a></li>
+            </ul>
+        </div>
+        <div class="box3" id="order">
+          <iframe aria-label="This is iframe it shows another page in the existing page" src="{% static 'display_products.html' %}" name="myiframe" frameborder="0"></iframe>
+        </div>
+       <!--About us section-->
+        <div class="box4">
+          <div class="aboutus">
+            <h1>About Us</h1>
+            <p><img src="{% static 'images/face1 (2).jpg' %}" alt="">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.  et modi in impedit vitae  officiis vero error ipsum repellendus deleniti hic qui sed assumenda. Accusantium harum Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit at possimus, esse soluta nemo sequi, maxime, nobis facilis nostrum a necessitatibus neque iusto! Perspiciatis magni iusto obcaecati praesentium nobis! Fugit, fugiat perspiciatis eveniet voluptates veritatis ad esse saepe voluptas. Blanditiis placeat reiciendis iusto ad ratione accusamus numquam cupiditate voluptatibus sint. illo distinctio. Tempore beatae debitis eius similique sequi corporis at  distinctio amet voluptatibus est! <span class="hidden-xs"> Laboriosam, sed labore? Libero at nemo,  voluptate ex incidunt dolores et nostrum. Obcaecati illum porro maxime labore. Cupiditate laudantium optio accusamus. Quasi omnis maxime laboriosam veritatis deserunt sapiente ad a sunt dolorem itaque. Vero, commodi perspiciatis!</span>
+            </p>
+          </div>
+        </div>
+        <div class="box5" id="contactus">
+          <div class="f1">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <p>Our address</p>
+            <p id="show" style="font-size: 20px;">Shree Himalaya Traders, near Baroda UttarPradesh Gramin Bank, Fatehganj (W) Bareilly, U.P - 243501</p>
+          </div>
+          <div class="f1">
+       <!--        {% if messages %}
+         <div class="alert alert-success" id="msg">
+             {% for message in messages %}
+                <h5>{{message}}</h5>
+             {% endfor %}
+         </div>
+         {% endif %} -->
+            <form action="contact" method="post" onsubmit="return validateForm();">
+              <fieldset>
+                <legend>Contact form</legend>
+               {% csrf_token %}
+              <input aria-label="Enter Firstname" type="text" placeholder="FirstName" id="FirstName" class="inputs" name="firstname">
+              <input aria-label="Enter Lastname" type="text" placeholder="LastName" id="LastName" class="inputs" name="lastname">
+              <input aria-label="Enter Email" type="email" name="email"  placeholder="Email id" id="email" class="inputs" >
+              <input aria-label="Enter Phone number" type="tel" name="phoneno"  placeholder="Contact no" id="tel_no" class="inputs" maxlength="12" minlength="10"> <br>
+              <input aria-label="Submit contact form" type="submit" value="Submit" style="color: black;">
+            </fieldset>
+            </form>
+          </div>
+          <div class="f1">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <p>Call us</p>
+            <p id="show1"><a href="tel:9149063159" style="font-size: 35px;">+91-9149063159</a><br><a href="tel:9759589059" style="font-size: 35px;">+91-9759589059</a></p>
+          </div>
+        </div>
+        {% include 'footer.html' %}
+     </div>
+     <script src="{% static 'js/stylepre.js' %}"></script> <!--our own js-->
+     <script>
+       /* frontend form validation Home page starts */
+    var live_check = document.getElementById("FirstName");
+    var live_check_two = document.getElementById("LastName");
+    live_check.addEventListener("input",function(event){
+        var live = event.target;
+        if (live.value.length > 2){
+            live.style.borderColor ="rgba(42, 168, 120, 0.692)" ;
+        }
+    });
+    live_check_two.addEventListener("input",function(event){
+        var live = event.target;
+        if (live.value.length > 2){
+            live.style.borderColor ="rgba(42, 168, 120, 0.692)" ;
+        }
+    });
+    function validateForm(){
+        var x = confirm("Want to Submit the form ?");
+        if (x==true){
+            var box = document.getElementsByClassName("inputs");
+            for (var i=0; i< box.length ; i++){
+                if (box[i].value==""){
+                    box[i].style.borderColor="red";
+                    alert("The field marked in red cannot be empty");
+                    return false;
+                }
+                if (box[i].value.length < 3 && (i==0 || i==1)){
+                    alert("Name should contain atleast three characters");
+                    box[i].style.borderColor="red";
+                    return false;
+                }
+            }
+       }
+       else {
+           return false;
+       }
+       }
+      /* form validation ends */
+      setTimeout(function(){
+        if($('#msg').length > 0){
+            $('#msg').remove();
+            }
+        }, 3000)
+     </script>
+    
+</body>
+</html>

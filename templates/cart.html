@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <meta name="description" content="Shop products , checkout and more...">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+</head>
+<script>
+      var user = '{{request.user}}'
+
+      function getToken(name) {
+    	let cookieValue = null;
+    	if (document.cookie && document.cookie !== '') {
+        	const cookies = document.cookie.split(';');
+        	for (let i = 0; i < cookies.length; i++) {
+            	const cookie = cookies[i].trim();
+            	// Does this cookie string begin with the name we want?
+            	if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                	cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                	break;
+            	}
+        	}
+    	}
+    return cookieValue;
+	}
+	const csrftoken = getToken('csrftoken');
+    </script>
+<body
+    style="background:linear-gradient(	rgba(175, 222, 204,1), rgba(230, 198, 143, 0.7)); height:auto;  overflow: auto;">
+    {% include 'navbar2.html' %}
+    <div class="container_custom" style="margin-top: 80px;">
+        <div class="row">
+            <div class="cart-top">
+                <div class="navigation_btns">
+                    <a class="btn btn-primary" href="{% url 'store' %}">Back to Store</a>
+                    <a class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cart-bottom">
+                <div class="cart_header">
+                    <h4 style="flex: 1;">Product</h4>
+                    <h4 style="flex: 1;">Price</h4>
+                    <h4 style="flex: 1;">Qnty.</h4>
+                    <h4 style="flex: 1;">Amount</h4>
+                </div>
+                {% if not items %}
+                <hr>
+                <div class="cart_items" flex:4;>
+                    
+                    <h2 style="text-align: center; font-family: 'Times New Roman', Times, serif;">Cart is Empty</h2>
+                    
+                </div>
+                {% endif %}
+                {% for item in items %}
+                <hr>
+                <div class="cart_items">
+                    <div class="cart_item" style="flex: 1;">
+                        <img src="{{item.product.imageURL}}" class="cart_image" alt="" style="margin-right: 5px;">
+                        <span>{{item.product.name}}</span>
+                    </div>
+                    <h5 style="flex: 1;" class="{{item.id}}">Rs{{item.price}}</h5>
+                    <div class="quantity" style="flex: 1;">
+                        <div class="increase"><img data-product="{{item.product.id}}" data-item="{{item.id}}"  data-action="add" src="{%static 'images/arrow_up.png' %}" class="update-cart" alt=""
+                                    height="8px"></div>
+                        <h5>{{item.quantity}}</h5>
+                        <div class="decrease"><img data-product="{{item.product.id}}" data-item="{{item.id}}" data-action="remove" class="update-cart" src="{%static 'images/arrow_down.png' %}" alt=""
+                                    height="8px"></div>
+                    </div>
+                    <h5 style="flex: 1;">Rs{{item.get_total}}</h5>
+                </div>
+                {% endfor %}
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cart-footer">
+                <div class="cart_info">
+                    <h4>Cart Items : {{order.get_cart_items}}</h4>
+                    <h4>Cart Total : Rs{{order.get_cart_total}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'footer.html' %}
+    <script src="{% static 'js/cart.js' %}"></script>
+</body>
+
+</html>

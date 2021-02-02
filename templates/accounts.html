@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta name="description" content="Login/Register with Shree Himalaya Traders">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Login/SignUp</title>
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <style>
+         #cart-icon{
+	width:20px;
+	display: inline-block;
+	margin-left: 4px;
+}   
+    </style>>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a aria-label="Shree Himalaya Traders" href="{% url 'home' %}" class="navbar-brand">Shree Himalaya Traders</a>
+                <button name="button" aria-label="toggler" class="navbar-toggle" data-target="#target" data-toggle="collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="target">
+                <ul class="nav navbar-nav">
+                    <li><a aria-label="visit Homepage" href="{% url 'home' %}">Home</a></li>
+                    <li class=""><a aria-label="visit Store" href="{% url 'store' %}">Store</a></li>
+                </ul>
+                <!--This is visible when screen size is large, medium and small-->
+                <ul class="nav navbar-nav navbar-right hidden-xs">
+                    <li class="active"><a aria-label="Login" href="{% url 'accounts' %}" class="display"><i class="fa fa-sign-in"></i> Login</a></li>
+                    <li><a aria-label="View cart" href="{% url 'cart' %}" class="display"><img alt="cart" id="cart-icon" src="{% static 'images/cart.png' %}"></a></li>
+                </ul>
+                <!--This works when screen size is extra small-->
+                <ul class="nav navbar-nav navbar-right hidden-lg hidden-md hidden-sm">
+                    <li aria-label="Login" class="active"><a href="{% url 'accounts' %}" class="display"><i class="fa fa-sign-in"></i> Login</a></li>
+                    <li><a aria-label="View cart" href="{% url 'cart' %}" class="display"><img alt="cart" id="cart-icon" src="{% static 'images/cart.png' %}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+    <div class="alert alert-info" style="margin-top:30px" id="msg">
+        {% for message in messages %}
+            <h5>{{message}}</h5>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="bothforms">
+        <div class="accounts one">
+            <div class="curtain2">
+                <h1 class="target form-heading">Register</h1>
+            </div>
+            <div class="formcontainer">
+                <form action="register" class="register" method="post" onsubmit="return validateForm()">
+                    {% csrf_token %}
+                    <input aria-label="Enter Firstname" type="text" placeholder="FirstName" name="firstname" class="designform">
+                    <input aria-label="Enter Lasttname" type="text" placeholder="LastName" name="lastname" class="designform">
+                    <input aria-label="Enter username" type="tel" placeholder="Phone No/Username" name="username" class="designform">
+                    <input aria-label="Enter email" type="email" placeholder="Email Id" name="email" class="designform">
+                    <input aria-label="Enter password" type="password" placeholder="Set Password" name="password1" class="designform">
+                    <input aria-label="confirm password" type="password" placeholder="Confirm password" name="password2" class="designform"><br>
+                    <input aria-label="SignUp" type="submit" value="SignUp" class="submit" style="margin-top: 20px;">
+                </form>
+            </div>
+        </div>
+        <div class="accounts two">
+            <div class="curtain curtain2">
+                <h1 class="target">Login</h1>
+            </div>
+            <div class="formcontainer formcontainer2">
+                <form action="login" class="login" method="post">
+                    {% csrf_token %}
+                    <input aria-label="Enter Username" type="text" placeholder="Phone no/Username" name="lgnusername" class="designform">
+                    <input aria-label="Enter password" type="password" placeholder="Password" name="password" class="designform">
+                    <input aria-label="Login" type="submit" value="Login" class="submit" style="margin-top: 20px;">
+                    <h4 style="margin-top:50px;"><a aria-label="Forgot password"  href="{% url 'reset_password' %}">Forgot password ? </a></h4>
+                    <h4 style="margin-top:20px;" id="registerlink" onclick="changeform()"><a>Don`t have a account ? SignUp</a></h4>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{%static 'js/accounts.js' %}"></script>
+    <script>
+        setTimeout(function(){
+        if($('#msg').length > 0){
+            $('#msg').remove();
+            }
+        }, 1000)
+    </script>
+</body>
+</html>
